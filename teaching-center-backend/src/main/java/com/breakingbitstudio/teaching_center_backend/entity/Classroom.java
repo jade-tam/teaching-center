@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class Classroom {
     @Id
     private Integer id;
-    
+
     private String name;
 
     private String description;
@@ -28,7 +28,7 @@ public class Classroom {
 
     private LocalDateTime enrollmentDeadline;
 
-    private boolean archived;
+    private Boolean archived;
 
     @CreationTimestamp
     private Instant createdAt;
@@ -39,11 +39,15 @@ public class Classroom {
     public Classroom() {
     }
 
-    public Classroom(String name, String description, String thumbnailUrl, Integer teacherId) {
+    public Classroom(String name, String description, String thumbnailUrl, Integer teacherId, Integer totalSessions, Integer maxStudents, LocalDateTime enrollmentDeadline, Boolean archived) {
         this.name = name;
         this.description = description;
         this.thumbnailUrl = thumbnailUrl;
         this.teacherId = teacherId;
+        this.totalSessions = totalSessions;
+        this.maxStudents = maxStudents;
+        this.enrollmentDeadline = enrollmentDeadline;
+        this.archived = archived;
     }
 
     public Integer getTotalSessions() {
@@ -58,7 +62,7 @@ public class Classroom {
         return enrollmentDeadline;
     }
 
-    public boolean isArchived() {
+    public Boolean isArchived() {
         return archived;
     }
 
