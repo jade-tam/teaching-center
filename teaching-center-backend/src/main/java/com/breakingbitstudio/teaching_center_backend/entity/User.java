@@ -1,10 +1,7 @@
 package com.breakingbitstudio.teaching_center_backend.entity;
 
 import com.breakingbitstudio.teaching_center_backend.constant.Role;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -12,9 +9,11 @@ import java.time.Instant;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String email;
