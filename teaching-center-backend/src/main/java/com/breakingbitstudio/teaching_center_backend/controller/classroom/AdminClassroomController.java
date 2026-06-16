@@ -25,7 +25,7 @@ public class AdminClassroomController {
     }
 
     @GetMapping("/{id}")
-    public ClassroomResponse getClassroom(@PathVariable Integer id) {
+    public ClassroomResponse getClassroom(@PathVariable Long id) {
         return classroomService.getClassroom(id);
     }
 
@@ -35,12 +35,12 @@ public class AdminClassroomController {
     }
 
     @PutMapping("/{id}")
-    public ClassroomResponse updateClassroom(@PathVariable Integer id, @Valid @RequestBody UpdateClassroomRequest request) {
+    public ClassroomResponse updateClassroom(@PathVariable Long id, @Valid @RequestBody UpdateClassroomRequest request) {
         return classroomService.updateClassroom(id, request);
     }
 
     @DeleteMapping("/{id}")
-    public void updateClassroom(@PathVariable Integer id) {
+    public void updateClassroom(@PathVariable Long id) {
         classroomService.deleteClassroom(id);
     }
 }
