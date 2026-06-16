@@ -6,7 +6,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 
 public record ClassroomResponse(
-        Integer id,
+        Long id,
 
         String name,
 
@@ -14,7 +14,7 @@ public record ClassroomResponse(
 
         String thumbnailUrl,
 
-        Integer teacherId,
+        Long teacherId,
 
         Integer totalSessions,
 
@@ -37,7 +37,7 @@ public record ClassroomResponse(
                 classroom.getName(),
                 classroom.getDescription(),
                 classroom.getThumbnailUrl(),
-                classroom.getTeacherId(),
+                classroom.getTeacher() != null ? classroom.getTeacher().getId() : null,
                 classroom.getTotalSessions(),
                 classroom.getMaxStudents(),
                 classroom.getEnrollmentDeadline(),

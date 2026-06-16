@@ -12,7 +12,7 @@ public record CreateClassroomRequest(
 
         String thumbnailUrl,
 
-        Integer teacherId,
+        Long teacherId,
 
         @Positive
         Integer totalSessions,

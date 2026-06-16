@@ -14,7 +14,7 @@ public record UpdateClassroomRequest(
 
         String thumbnailUrl,
 
-        Integer teacherId,
+        Long teacherId,
 
         @Positive
         Integer totalSessions,

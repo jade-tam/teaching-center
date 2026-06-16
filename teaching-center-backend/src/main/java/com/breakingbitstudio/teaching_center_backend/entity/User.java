@@ -14,7 +14,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String email;
 
@@ -50,7 +50,7 @@ public class User {
         this.active = active;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

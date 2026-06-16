@@ -1,21 +1,17 @@
 package com.breakingbitstudio.teaching_center_backend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 public class Classroom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String name;
 
@@ -23,7 +19,9 @@ public class Classroom {
 
     private String thumbnailUrl;
 
-    private Integer teacherId;
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
+    private User teacher;
 
     private Integer totalSessions;
 
@@ -42,11 +40,11 @@ public class Classroom {
     public Classroom() {
     }
 
-    public Classroom(String name, String description, String thumbnailUrl, Integer teacherId, Integer totalSessions, Integer maxStudents, LocalDateTime enrollmentDeadline, Boolean archived) {
+    public Classroom(String name, String description, String thumbnailUrl, User teacher, Integer totalSessions, Integer maxStudents, LocalDateTime enrollmentDeadline, Boolean archived) {
         this.name = name;
         this.description = description;
         this.thumbnailUrl = thumbnailUrl;
-        this.teacherId = teacherId;
+        this.teacher = teacher;
         this.totalSessions = totalSessions;
         this.maxStudents = maxStudents;
         this.enrollmentDeadline = enrollmentDeadline;
@@ -69,7 +67,7 @@ public class Classroom {
         return archived;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -85,8 +83,8 @@ public class Classroom {
         return thumbnailUrl;
     }
 
-    public Integer getTeacherId() {
-        return teacherId;
+    public User getTeacher() {
+        return teacher;
     }
 
     public Instant getCreatedAt() {
@@ -109,8 +107,8 @@ public class Classroom {
         this.thumbnailUrl = thumbnailUrl;
     }
 
-    public void setTeacherId(Integer teacherId) {
-        this.teacherId = teacherId;
+    public void setTeacher(User teacher) {
+        this.teacher = teacher;
     }
 
     public void setTotalSessions(Integer totalSessions) {

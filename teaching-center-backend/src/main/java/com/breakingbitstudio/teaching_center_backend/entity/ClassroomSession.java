@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class ClassroomSession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "classroom_id")
@@ -43,7 +43,7 @@ public class ClassroomSession {
         this.endTime = endTime;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

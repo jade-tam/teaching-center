@@ -11,13 +11,13 @@ public interface ClassroomService {
 
     List<ClassroomResponse> getAllClassrooms();
 
-    ClassroomResponse getClassroom(Integer id);
+    ClassroomResponse getClassroom(Long id);
 
     ClassroomResponse createNewClassroom(CreateClassroomRequest request);
 
-    ClassroomResponse updateClassroom(Integer id, UpdateClassroomRequest request);
+    ClassroomResponse updateClassroom(Long id, UpdateClassroomRequest request);
 
-    ClassroomResponse patchClassroom(Integer id, PatchClassroomRequest request);
+    ClassroomResponse patchClassroom(Long id, PatchClassroomRequest request);
 
-    void deleteClassroom(Integer id);
+    void deleteClassroom(Long id);
 }

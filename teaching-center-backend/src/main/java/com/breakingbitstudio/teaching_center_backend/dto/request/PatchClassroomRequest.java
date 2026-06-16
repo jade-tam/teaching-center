@@ -12,7 +12,7 @@ public record PatchClassroomRequest(
 
         String thumbnailUrl,
 
-        Integer teacherId,
+        Long teacherId,
 
         @Positive
         Integer totalSessions,
