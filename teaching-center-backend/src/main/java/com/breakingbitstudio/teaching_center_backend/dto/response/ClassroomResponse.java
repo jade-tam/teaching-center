@@ -1,49 +1,119 @@
 package com.breakingbitstudio.teaching_center_backend.dto.response;
 
-import com.breakingbitstudio.teaching_center_backend.entity.Classroom;
-
 import java.time.Instant;
 import java.time.LocalDateTime;
 
-public record ClassroomResponse(
-        Long id,
+public class ClassroomResponse {
+    private Long id;
 
-        String name,
+    private String name;
 
-        String description,
+    private String description;
 
-        String thumbnailUrl,
+    private String thumbnailUrl;
 
-        Long teacherId,
+    private Long teacherId;
 
-        Integer totalSessions,
+    private Integer totalSessions;
 
-        Integer maxStudents,
+    private Integer maxStudents;
 
-        LocalDateTime enrollmentDeadline,
+    private LocalDateTime enrollmentDeadline;
 
-        Boolean archived,
+    private Boolean archived;
 
-        Instant createdAt,
+    private Instant createdAt;
 
-        Instant updatedAt
-) {
+    private Instant updatedAt;
 
-    public static ClassroomResponse from(
-            Classroom classroom) {
+    public ClassroomResponse() {
+    }
 
-        return new ClassroomResponse(
-                classroom.getId(),
-                classroom.getName(),
-                classroom.getDescription(),
-                classroom.getThumbnailUrl(),
-                classroom.getTeacher() != null ? classroom.getTeacher().getId() : null,
-                classroom.getTotalSessions(),
-                classroom.getMaxStudents(),
-                classroom.getEnrollmentDeadline(),
-                classroom.isArchived(),
-                classroom.getCreatedAt(),
-                classroom.getUpdatedAt()
-        );
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
+    }
+
+    public Long getTeacherId() {
+        return teacherId;
+    }
+
+    public Integer getTotalSessions() {
+        return totalSessions;
+    }
+
+    public Integer getMaxStudents() {
+        return maxStudents;
+    }
+
+    public LocalDateTime getEnrollmentDeadline() {
+        return enrollmentDeadline;
+    }
+
+    public Boolean getArchived() {
+        return archived;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public Instant getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
+    }
+
+    public void setTeacherId(Long teacherId) {
+        this.teacherId = teacherId;
+    }
+
+    public void setTotalSessions(Integer totalSessions) {
+        this.totalSessions = totalSessions;
+    }
+
+    public void setMaxStudents(Integer maxStudents) {
+        this.maxStudents = maxStudents;
+    }
+
+    public void setEnrollmentDeadline(LocalDateTime enrollmentDeadline) {
+        this.enrollmentDeadline = enrollmentDeadline;
+    }
+
+    public void setArchived(Boolean archived) {
+        this.archived = archived;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setUpdatedAt(Instant updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
