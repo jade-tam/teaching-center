@@ -63,10 +63,6 @@ public class Classroom {
         return enrollmentDeadline;
     }
 
-    public Boolean isArchived() {
-        return archived;
-    }
-
     public Long getId() {
         return id;
     }
@@ -85,6 +81,10 @@ public class Classroom {
 
     public User getTeacher() {
         return teacher;
+    }
+
+    public Boolean getArchived() {
+        return archived;
     }
 
     public Instant getCreatedAt() {
