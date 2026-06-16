@@ -160,7 +160,8 @@ Stores approved classroom memberships.
 | id           | BIGSERIAL | PK                 |
 | student_id   | BIGINT    | FK → users.id      |
 | classroom_id | BIGINT    | FK → classrooms.id |
-| enrolled_at  | TIMESTAMP | NOT NULL           |
+| created_at   | TIMESTAMP | NOT NULL           |
+| updated_at   | TIMESTAMP | NOT NULL           |
 
 ### Constraints
 
