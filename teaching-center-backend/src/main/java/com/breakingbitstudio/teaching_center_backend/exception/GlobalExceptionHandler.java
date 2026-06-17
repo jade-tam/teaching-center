@@ -1,6 +1,8 @@
 package com.breakingbitstudio.teaching_center_backend.exception;
 
+import com.breakingbitstudio.teaching_center_backend.constant.ErrorCode;
 import com.breakingbitstudio.teaching_center_backend.dto.common.ApiResponse;
+import com.breakingbitstudio.teaching_center_backend.i18n.MessageService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -14,15 +16,24 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    private final MessageService messageService;
+
+    public GlobalExceptionHandler(MessageService messageService) {
+        this.messageService = messageService;
+    }
+
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ApiResponse<Void>> handle(ResourceNotFoundException ex) {
+
+        ErrorCode code = ex.getErrorCode();
+
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
-                .body(new ApiResponse<Void>(
+                .body(new ApiResponse<>(
                         false,
                         HttpStatus.NOT_FOUND.value(),
-                        "RESOURCE_NOT_FOUND",
-                        ex.getMessage(),
+                        code.name(),
+                        messageService.get(code.name()),
                         null,
                         null,
                         Instant.now()
@@ -48,8 +59,8 @@ public class GlobalExceptionHandler {
                 .body(new ApiResponse<>(
                         false,
                         HttpStatus.BAD_REQUEST.value(),
-                        "VALIDATION_ERROR",
-                        "Validation failed",
+                        ErrorCode.VALIDATION_FAILED.name(),
+                        messageService.get(ErrorCode.VALIDATION_FAILED.name()),
                         null,
                         errors,
                         Instant.now()
@@ -63,8 +74,8 @@ public class GlobalExceptionHandler {
                 .body(new ApiResponse<>(
                         false,
                         HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                        "INTERNAL_SERVER_ERROR",
-                        "Something went wrong",
+                        ErrorCode.INTERNAL_SERVER_ERROR.name(),
+                        messageService.get(ErrorCode.INTERNAL_SERVER_ERROR.name()),
                         null,
                         null,
                         Instant.now()

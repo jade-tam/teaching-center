@@ -5,6 +5,7 @@ import com.breakingbitstudio.teaching_center_backend.dto.request.PatchClassroomR
 import com.breakingbitstudio.teaching_center_backend.dto.request.UpdateClassroomRequest;
 import com.breakingbitstudio.teaching_center_backend.dto.response.ClassroomResponse;
 import com.breakingbitstudio.teaching_center_backend.entity.Classroom;
+import com.breakingbitstudio.teaching_center_backend.entity.User;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,12 +14,12 @@ import java.util.stream.Collectors;
 @Component
 public class ClassroomMapper {
 
-    public Classroom toEntity(CreateClassroomRequest request) {
+    public Classroom toEntity(CreateClassroomRequest request, User teacher) {
         return new Classroom(
                 request.getName(),
                 request.getDescription(),
                 request.getThumbnailUrl(),
-                null, // Teacher will be set in the service layer
+                teacher,
                 request.getTotalSessions(),
                 request.getMaxStudents(),
                 request.getEnrollmentDeadline(),
@@ -44,11 +45,11 @@ public class ClassroomMapper {
 
     public void updateEntity(
             Classroom classroom,
-            UpdateClassroomRequest request) {
+            UpdateClassroomRequest request, User teacher) {
         classroom.setName(request.getName());
         classroom.setDescription(request.getDescription());
         classroom.setThumbnailUrl(request.getThumbnailUrl());
-        // Teacher will be updated in the service layer if needed
+        classroom.setTeacher(teacher);
         classroom.setTotalSessions(request.getTotalSessions());
         classroom.setMaxStudents(request.getMaxStudents());
         classroom.setEnrollmentDeadline(request.getEnrollmentDeadline());
@@ -57,7 +58,7 @@ public class ClassroomMapper {
 
     public void patchEntity(
             Classroom classroom,
-            PatchClassroomRequest request) {
+            PatchClassroomRequest request, User teacher) {
         if (request.getName() != null) {
             classroom.setName(request.getName());
         }
@@ -66,6 +67,9 @@ public class ClassroomMapper {
         }
         if (request.getThumbnailUrl() != null) {
             classroom.setThumbnailUrl(request.getThumbnailUrl());
+        }
+        if (request.getTeacherId() != null) {
+            classroom.setTeacher(teacher);
         }
         if (request.getTotalSessions() != null) {
             classroom.setTotalSessions(request.getTotalSessions());
