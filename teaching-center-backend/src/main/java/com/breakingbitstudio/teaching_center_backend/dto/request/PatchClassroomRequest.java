@@ -1,12 +1,15 @@
 package com.breakingbitstudio.teaching_center_backend.dto.request;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class PatchClassroomRequest {
-    @Size(min = 3, max = 20)
+    @Size(min = 3, max = 30)
     private String name;
 
     @Size(min = 3, max = 100)
@@ -15,6 +18,7 @@ public class PatchClassroomRequest {
     @Size(min = 3, max = 200)
     private String thumbnailUrl;
 
+    @Positive
     private Long teacherId;
 
     @Positive

@@ -92,6 +92,4 @@ public class ClassroomMapper {
                 .map(this::toResponse)
                 .collect(Collectors.toList());
     }
-
-
 }

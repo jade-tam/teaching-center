@@ -1,6 +1,8 @@
 package com.breakingbitstudio.teaching_center_backend.controller.classroom;
 
 import com.breakingbitstudio.teaching_center_backend.dto.common.ApiResponse;
+import com.breakingbitstudio.teaching_center_backend.dto.common.PaginationResponse;
+import com.breakingbitstudio.teaching_center_backend.dto.query.ClassroomQuery;
 import com.breakingbitstudio.teaching_center_backend.dto.request.CreateClassroomRequest;
 import com.breakingbitstudio.teaching_center_backend.dto.request.PatchClassroomRequest;
 import com.breakingbitstudio.teaching_center_backend.dto.request.UpdateClassroomRequest;
@@ -9,8 +11,6 @@ import com.breakingbitstudio.teaching_center_backend.service.ClassroomService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/admin/classrooms")
@@ -23,10 +23,10 @@ public class AdminClassroomController {
     }
 
     @GetMapping
-    public ApiResponse<List<ClassroomResponse>> getAllClassrooms() {
+    public ApiResponse<PaginationResponse<ClassroomResponse>> getClassrooms(@Valid @ModelAttribute ClassroomQuery query) {
         return ApiResponse.success(
                 HttpStatus.OK,
-                classroomService.getAllClassrooms()
+                classroomService.getClassrooms(query)
         );
     }
 
