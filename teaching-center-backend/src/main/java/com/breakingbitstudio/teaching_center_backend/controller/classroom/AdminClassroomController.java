@@ -2,6 +2,7 @@ package com.breakingbitstudio.teaching_center_backend.controller.classroom;
 
 import com.breakingbitstudio.teaching_center_backend.dto.common.ApiResponse;
 import com.breakingbitstudio.teaching_center_backend.dto.request.CreateClassroomRequest;
+import com.breakingbitstudio.teaching_center_backend.dto.request.PatchClassroomRequest;
 import com.breakingbitstudio.teaching_center_backend.dto.request.UpdateClassroomRequest;
 import com.breakingbitstudio.teaching_center_backend.dto.response.ClassroomResponse;
 import com.breakingbitstudio.teaching_center_backend.service.ClassroomService;
@@ -43,6 +44,11 @@ public class AdminClassroomController {
     @PutMapping("/{id}")
     public ApiResponse<ClassroomResponse> updateClassroom(@PathVariable Long id, @Valid @RequestBody UpdateClassroomRequest request) {
         return ApiResponse.success(HttpStatus.OK, classroomService.updateClassroom(id, request));
+    }
+
+    @PatchMapping("/{id}")
+    public ApiResponse<ClassroomResponse> patchClassroom(@PathVariable Long id, @Valid @RequestBody PatchClassroomRequest request) {
+        return ApiResponse.success(HttpStatus.OK, classroomService.patchClassroom(id, request));
     }
 
     @DeleteMapping("/{id}")
