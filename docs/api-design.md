@@ -46,33 +46,20 @@ Access control is enforced by Spring Security.
 
 ---
 
-## Pagination
-
-List endpoints support:
-
-```http
-?page=1&size=20
-```
-
-Response:
-
-```json
-{
-  "content": [],
-  "page": 1,
-  "size": 20,
-  "totalElements": 100,
-  "totalPages": 5
-}
-```
-
----
-
 ## Success Response
 
 ```json
 {
-  "data": {}
+  "success": true,
+  "status": 201,
+  "code": "CLASSROOM_CREATED",
+  "message": "Classroom created successfully",
+  "data": {
+    "id": 1,
+    "name": "Java"
+  },
+  "errors": null,
+  "timestamp": "2026-06-16T10:00:00Z"
 }
 ```
 
@@ -82,14 +69,63 @@ Response:
 
 ```json
 {
+  "success": false,
   "status": 400,
+  "code": "VALIDATION_ERROR",
   "message": "Validation failed",
-  "errors": [
-    {
-      "field": "email",
-      "message": "must be a valid email"
-    }
-  ]
+  "data": null,
+  "errors": {
+    "name": "Name is required"
+  },
+  "timestamp": "2026-06-16T10:00:00Z"
+}
+```
+
+---
+
+## Pagination
+
+Get endpoints support:
+
+```http
+?search=text&page=1&size=10&sortBy=id&sortDirection=ASC
+```
+
+Response:
+
+```json
+{
+    "success": true,
+    "status": 200,
+    "code": "OK",
+    "message": "OK",
+    "data": {
+        "pageData": [
+            {
+                "archived": false,
+                "createdAt": null,
+                "description": "lớp học lập trình java",
+                "enrollmentDeadline": "2030-11-03T18:59:50.079",
+                "id": null,
+                "maxStudents": 28,
+                "name": "Lớp học JAVA",
+                "teacherId": null,
+                "thumbnailUrl": "string",
+                "totalSessions": 72,
+                "updatedAt": null
+            }
+        ],
+        "page": 1,
+        "size": 10,
+        "totalElements": 1,
+        "totalPages": 1,
+        "first": true,
+        "last": true,
+        "hasPrevious": false,
+        "hasNext": false
+    },
+    "errors": null,
+    "timestamp": "2026-06-18T13:29:44.272695Z"
 }
 ```
 
