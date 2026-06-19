@@ -20,3 +20,21 @@ logging:
 
   file:
     name: logs/application.log
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
+
+  endpoint:
+    health:
+      show-details: always
+
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: Teaching Center Backend
